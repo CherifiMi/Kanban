@@ -1,25 +1,59 @@
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.desktop.ui.tooling.preview.Preview
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.detectDragGestures
+import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.Red
+import androidx.compose.ui.input.pointer.consumeAllChanges
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.unit.IntOffset
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import component.DragCard
 import model.DragCardData
 import model.SlideState
 import util.Dimens
+import kotlin.math.roundToInt
 
 fun main() = application {
     Window(onCloseRequest = ::exitApplication) {
         App()
+
+        // TODO: 10/19/2022 for next test
+    /*
+        Box(modifier = Modifier.fillMaxSize()) {
+            var offsetX by remember { mutableStateOf(0f) }
+            var offsetY by remember { mutableStateOf(0f) }
+
+            LaunchedEffect(offsetY, offsetX) {
+                println("$offsetX   $offsetY")
+            }
+            Box(
+                Modifier
+                    .offset { IntOffset(offsetX.roundToInt(), offsetY.roundToInt()) }
+                    .background(Color.Blue)
+                    .size(50.dp)
+                    .pointerInput(Unit) {
+                        detectDragGestures { change, dragAmount ->
+                            change.consumeAllChanges()
+                            offsetX += dragAmount.x
+                            offsetY += dragAmount.y
+                        }
+                    }
+            )
+        }
+    }*/
     }
 }
 
@@ -96,7 +130,6 @@ fun App() {
         )
     }
 }
-
 
 
 @ExperimentalAnimationApi
